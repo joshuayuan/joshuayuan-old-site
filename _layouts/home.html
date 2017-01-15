@@ -11,19 +11,14 @@ redirect_from:
 </section>
 
 <section id="projects" class="main">
-    <div class="grid wide">
+    <div class="grid">
     {% assign first = true %}
-    {% assign sorted_projects = (site.projects | sort:"order") | reverse %}
+    {% assign sorted_projects = (site.projects | sort:"order")%}
     {% for project in sorted_projects %}
-    <a href="{{project.url}}" class="grid-item{% if first %} grid-sizer{% endif %}">
-        <img src="{{project.thumbnail}}" />
-        <div class="label">
-          <div class="inner">
-            <h3>{{project.title}}</h3>
-            <p>{{project.brief}}</p>
-            <time datetime="{{project.year}}">{{project.year}}</time>
-          </div>
-        </div>
+    <a href="{{project.url}}" class="grid-item {% if first %}grid-sizer{% endif %}">
+        <img src="{{project.thumbnail}}" width="100px"/>
+        <!-- <h3>{{project.title}}</h3> -->
+        <!-- <p>{{project.brief}}</p> -->
       </a>
       {% assign first = false %}
     {% endfor %}
@@ -33,3 +28,12 @@ redirect_from:
 <section id="contact" class="main">
     {% include contact.html %}
 </section>
+
+<script>
+    $('.grid').isotope({
+        // options
+        itemSelector: '.grid-item',
+        percentPosition: true,
+        columnWidth: '.grid-sizer'
+    });
+</script>
