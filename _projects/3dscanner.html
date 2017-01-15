@@ -1,8 +1,11 @@
 ---
+layout: project
 title: 3D Scanner
 thumbnail: /assets/images/thumbnail_3dscanner.jpg
 order: 2
 ---
+
+<span class="main">
 <h1 align="center" >3D Scanner</h1>
 
 <p>January 2016 [Completed]</p>
@@ -20,4 +23,6 @@ order: 2
 <h2>Development</h2>
 
 <p>The hardware was designed and built from scratch, and the code was written in C++ and Python, built on top of ROS. The scanner used two LIDARs, one mounted on top and one on the side. As the turntable spun the object, the LIDAR scans were projected into a point cloud using the angle data from the servo motor. The point clouds from the two LIDARs were then merged using the ICP algorithm, which combines the common points from the two clouds into one final point cloud. The point cloud could be exported into MeshLab, which converted it into an STL file for applications like 3D printing. We used ROS to read the LIDAR data and spin the servo motor, and PCL (point cloud library) to process the point clouds. I developed software in Python and assembled the frame of the scanner.</p>
+
+</span>
 
