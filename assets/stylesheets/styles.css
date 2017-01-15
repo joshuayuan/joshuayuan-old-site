@@ -61,24 +61,25 @@ body {
     padding-right: 0.5%;
     float: right;
     margin: 0 auto;
+    text-align: center;
 }
 #intro {
+    padding-top: 2vh;
     background-color: #81D4FA;
+}
+.nospace {
+    margin: 0;
 }
 #projects{
     background-color: white;
 }
 #contact {
+    padding-top: 2vh;
     background-color: #81D4FA;
 }
-.hline {
-    position: relative;
-    width: 100%;
-    height: 10px;
-    border: 10px #0288D1;
-    z-index: 100;
+.project {
+    padding: 2vh;
 }
-
 /*
 *
 * GRID
