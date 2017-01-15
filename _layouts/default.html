@@ -3,22 +3,26 @@
   <head>
 
     <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ site.baseurl }}/assets/stylesheets/styles.css" /> 
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/stylesheets/skeleton.css" /> 
+
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
   </head>
   <body>
     <div id="sidebar">
       <a href="{{ site.url }}"><h1>Joshua Yuan</h1>
-      <img src="{{ site.baseurl }}/assets/images/profile.jpg" id="profile" width="50%"/></a>
+      <img src="{{ site.baseurl }}/assets/images/profile.jpg" id="profile" width="75%"/></a>
       <ul id="toc"> 
         <li><a href="{{ site.url }}#intro">About</a></li>
         <li><a href="{{ site.url }}#projects">Projects</a></li>
         <li><a href="{{ site.url }}#contact">Contact</a></li>
       </ul>
     </div>
-    <div id="vertline"></div>
+    <!-- <div id="vertline"></div> -->
 
     {{ content }}
   </body>

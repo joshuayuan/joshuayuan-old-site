@@ -9,9 +9,9 @@ redirect_from:
 <section id="intro" class="main">
     {% include intro.html %}
 </section>
-
+<hr class="hline main">
 <section id="projects" class="main">
-    <h1> Projects </h1>
+    <h1 style="text-align: center"> Projects </h1>
     <div class="grid">
     {% assign first = true %}
     {% assign sorted_projects = (site.projects | sort:"order")%}
@@ -25,7 +25,7 @@ redirect_from:
     {% endfor %}
   </div>
 </section>
-
+<hr class="hline main">
 <section id="contact" class="main">
     {% include contact.html %}
 </section>

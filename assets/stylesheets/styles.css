@@ -18,12 +18,18 @@ body {
     height: 100vh;
     left: 0%;
     text-align: center;
-    background-color: rgba(0, 0, 0, .2);
-    z-index: 1;
+    background-color: #03A9F4;
+    z-index: 2;
+    border-right: #0288D1 solid .75vh;
+    padding-top: 10%;
+
+}
+#sidebar a {
+    color: #FFFFFF;
 }
 #profile {
     border-radius: 50%;
-    border: 0.5em black solid;
+    border: 0.25em white solid;
 }
 #toc {
     list-style: none;
@@ -31,16 +37,15 @@ body {
 }
 #vertline {
     position: fixed;
-    background-color: orange;
+    background-color: #FFFFFF;
     padding-left: 19.5%;
     top: 0%;
     left: 0%;
     height: 100vh;
     width: 1%;
 }
-#ghicon {
-    border: solid black 1em;
-    z-index: 2;
+#toc {
+    font-size: 3rem;
 }
 
 /*
@@ -51,20 +56,27 @@ body {
 .main {
     position: relative;
     display: block;
-    width: 79%;
-    padding-left: .5%;
+    width: 78.5%;
+    padding-left: 1%;
+    padding-right: 0.5%;
     float: right;
     margin: 0 auto;
-    /*padding-left: 26%;*/
 }
 #intro {
-    background-color: rgba(255, 0, 0, .1);
+    background-color: #81D4FA;
 }
 #projects{
-    background-color: rgba(0, 255, 0, .1);
+    background-color: white;
 }
 #contact {
-    background-color: rgba(0, 0, 255, .1);
+    background-color: #81D4FA;
+}
+.hline {
+    position: relative;
+    width: 100%;
+    height: 10px;
+    border: 10px #0288D1;
+    z-index: 100;
 }
 
 /*
