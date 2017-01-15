@@ -1,0 +1,67 @@
+/*
+*
+* GLOBAL
+*
+*/
+body {
+    margin: 0;
+}
+/*
+*
+* SIDEBAR
+*
+*/
+#sidebar {
+    position: fixed;
+    top: 0%;
+    width: 20%;
+    height: 100vh;
+    left: 0%;
+    text-align: center;
+    background-color: rgba(0, 0, 0, .2);
+    z-index: 1;
+}
+#profile {
+    border-radius: 50%;
+    border: 0.5em black solid;
+}
+#toc {
+    list-style: none;
+    padding: 0;
+}
+#vertline {
+    position: fixed;
+    background-color: orange;
+    padding-left: 19.5%;
+    top: 0%;
+    left: 0%;
+    height: 100vh;
+    width: 1%;
+}
+#ghicon {
+    border: solid black 1em;
+    z-index: 2;
+}
+
+/*
+*
+* BODY
+*
+*/
+.main {
+    display: block;
+    width: 79%;
+    padding-left: .5%;
+    float: right;
+    margin: 0 auto;
+    /*padding-left: 26%;*/
+}
+#intro {
+    background-color: rgba(255, 0, 0, .1);
+}
+#projects{
+    background-color: rgba(0, 255, 0, .1);
+}
+#contact {
+    background-color: rgba(0, 0, 255, .1);
+}

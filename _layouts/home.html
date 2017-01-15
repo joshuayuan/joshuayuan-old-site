@@ -1,0 +1,35 @@
+---
+layout: default
+redirect_from:
+    - /projects/
+    - /about/
+    - /contact/
+---
+
+<section id="intro" class="main">
+    {% include intro.html %}
+</section>
+
+<section id="projects" class="main">
+    <div class="grid wide">
+    {% assign first = true %}
+    {% assign sorted_projects = (site.projects | sort:"order") | reverse %}
+    {% for project in sorted_projects %}
+    <a href="{{project.url}}" class="grid-item{% if first %} grid-sizer{% endif %}">
+        <img src="{{project.thumbnail}}" />
+        <div class="label">
+          <div class="inner">
+            <h3>{{project.title}}</h3>
+            <p>{{project.brief}}</p>
+            <time datetime="{{project.year}}">{{project.year}}</time>
+          </div>
+        </div>
+      </a>
+      {% assign first = false %}
+    {% endfor %}
+  </div>
+</section>
+
+<section id="contact" class="main">
+    {% include contact.html %}
+</section>

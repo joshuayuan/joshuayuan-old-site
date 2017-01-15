@@ -1,0 +1,91 @@
+<h1 align="center" >163 Mobile Application</h1>
+
+<p>August 2016 – Present [In Progress]</p>
+
+<h2>Links</h2>
+
+<p>Code: <a href="https://github.com/joshuayuan/163">https://github.com/joshuayuan/163</a></p>
+
+<p>Google Play: <a href="https://play.google.com/store/apps/details?id=me.joshuayuan.a163">https://play.google.com/store/apps/details?id=me.joshuayuan.a163</a></p>
+
+<h2>Overview</h2>
+
+<p><b>163</b> is an Android Application currently available on the Google Play Store. It’s a computation based single player card game where you’re given six cards from a standard card deck, and you have to perform the four basic arithmetic operations (addition, subtraction, multiplication, division) on all six cards to reach the number 163. For example, given the set [10, 6, 10, 1, 2, 1], (10 + 6) * 10 + 1 + 2 * 1 = 163! There are different timed modes to play in, and for each solved set of cards, you gain a point – try to get the most points possible in the allotted time! This application is inspired by Steven Hao.</p>
+
+<h2>Tl;dr</h2>
+
+<p>When you select the cards, which are custom button classes, they get placed or removed from a queue, which is pretty much a LinkedList. You can perform operations on the first two cards in the queue. Keep doing this and try to use all cards to get to the number 163. The cards are represented by CardNodes, which have two children CardNodes so when you combine two cards, you’re creating a new CardNode! So when you combine multiple cards together, you’re pretty much creating a binary tree structure. Let’s just play!</p>
+
+<p>^My abridged career fair pitch to recruiters</p>
+
+<h2>Development</h2>
+
+<h3>Start</h3>
+
+<p>In mid-August of 2016, I began this project as my first independent software project. I started off creating a <i>GameActivity</i> and building <i>activity_game.xml</i>. I envisioned 6 buttons as the cards, 4 buttons for the operations, 1 for submitting, and 1 for undoing card groups. Right off the bat, I bumped into an issue I didn’t know how to solve with layouts – I wanted the third row of functional buttons to be of height wrap_content, and the two rows of cards to equally take up the rest of the space. After more research into this, I realized that all I had to do was set the weight of the button row to equal 0, and the top two rows could have weight equal to 1 in a LinearLayout. Once the positions looked appropriate, I created a custom button appearance, <i>cardslot.xml</i>, just to make my layout look more appealing. Time to make this game work.</p>
+
+<h3>Gameplay</h3>
+
+<p>You select at least two cards (i.e. 10 &amp; 6), then select the operation (i.e. +). The first two selected cards then combine into one card (10 + 6 = 16). At this point, there should only be 5 clickable buttons representing the remaining 5 cards. You should still be able to select a card (16) and when possible, undo or uncombine them (16 à 10 &amp; 6). When only one card remains equal to 163, then hitting the submit button would deal out six more cards.</p>
+
+<h3>Flow</h3>
+
+<p><i>MainActivity.java</i> is the class for the main page when the application is initially started with buttons to a tutorial/introduction page, <i>ReadMeActivity.java</i>, and the play button. The play button directs to <i>PlayActivity.java</i> which is the activity where the user selects the gameplay mode, either 1 minute, 2 minutes, 5 minutes, endless, or a custom number of minutes. After the mode is selected, a timer in <i>GameActivity.java</i> is automatically started and the game starts. Once this timer expires, the score is sent over and displayed by <i>ScoreScreenActivity.java</i>. There’s a button to return home as well. </p>
+
+<p>Along the way, pressing the back button was always an issue that would mess up the flow of the game. I added key press checkers in each activity to properly redirect and finish activities when needed. </p>
+
+<h3>Cards</h3>
+
+<p>One of the most important aspects of this project I had to design was the representation of cards in the game. Because my cards were Android Buttons, I could use onClickListeners in <i>GameActivity.java</i> to detect when the cards were selected. But I couldn’t have a direct mapping between a card and a button because this game requires constant generation and degeneration of different cards, and a button could not just be removed from the layout, when a card wasn’t present. To solve this, I created two new classes. <i>CardSlot.java</i> is a custom button class, which extends Android’s Button. There are always six CardSlots representing the six buttons, or slots for cards. Each CardSlot has an instance of a CardNode, from <i>CardNode.java</i>, where a CardNode is the representation of a card. </p>
+
+<p>The CardNode class stores five important fields – two CardNode pointers which are either null if the card has no children or are pointers to the two CardNodes which created this CardNode, an int representing the CardNode’s current position in the queue to display, another int storing either the card’s original card slot or 0 if it was a combined card, and a double for the current value of the card. With the CardNode data structure, I’m able to combine and break down other CardNodes in a way similar to a binary tree structure. </p>
+
+<p>At the start of the game, six CardSlots are initialized as the six buttons. Six CardNodes are generated from a deck, and placed in the CardSlots and their positions, values, etc, all assigned appropriately. When a CardSlot, the custom button class, is clicked, the queue’s position is displayed on the top left corner of the button. To implement this feature, I overrode the onDraw() method of Android Buttons to draw the appropriate graph one through six based on the CardNode’s position in the queue. </p>
+
+<h3>Queue</h3>
+
+<p>The most challenging feature to implement was definitely the queue. The purpose of a queue is so that players could select multiple cards at once (select up to six cards) and rapidly perform operations on them (five operations) without having to reselect the cards instead of having to make three clicks (select two cards and an operation) for each computation. The former method can reduce six cards to one card in eleven taps whereas the latter implementation would result in fifteen taps, arguably slower. </p>
+
+<p>The queue has complicated functions. When only one card is in the queue, any operation would do nothing, preserving the card in the queue still. When two cards are in the queue, an operation would combine the two cards into one card, emptying the queue. If more than two cards are in the queue and an operation is performed, the first two cards would combine into one card, with the new card now at the first position of the queue, and the rest of the cards would decrement towards the front of the queue. Also, if a card in the queue is deselected, it should be removed from the queue and update the position of cards in the queue after it. With all this in mind, I created my own Queue class, <i>Queue.java</i>, to represent this queue data structure. </p>
+
+<p>This Queue class would be responsible for creating new CardNodes and also deconstructing two CardNodes back into the queue from a single CardNode. I used Java.util’s LinkedList to store the CardNodes and every time an update was made to the queue, I would iterate through the LinkedList and update each CardNode appropriately. </p>
+
+<h3>Shuffling</h3>
+
+<p>I first implemented each of the six cards to just drawn as a random number from 1 to 13. Later I implemented a virtual 52 card deck and drew six cards without replacement for each set, only refreshing and reshuffling the deck every three draws (18 cards). Turns out that the second implementation results in sets which are much more difficult to solve because double digit cards become much more uncommon, and double digit cards are generally very useful for this game. I created a Deck class in <i>Deck.java </i>to abstract away some of the deck operations. The shuffling and dealing details may still be revised again in the future.</p>
+
+<h2>Future Plans</h2>
+
+<p>Here’s a list of features or changes I’d like to make in future versions in no particular order:</p>
+
+<p>· UI/UX Redesign (colors, shapes, filters, etc)</p>
+
+<p>· Card to also show children cards values with their operation, instead of just its current value.</p>
+
+<p>· Local high scores</p>
+
+<p>· Global high scores</p>
+
+<p>· Automatic solution generator</p>
+
+<p>· “Three-click” function (select one card, select an operation, select second card). </p>
+
+<p>· Improve state saving bugs</p>
+
+<h2>Random (read at your own risk)</h2>
+
+<p>“Is there always a guaranteed solution?” <br />
+“No… Usually, but probably not always.”</p>
+
+<p>“So how do I know if this set of cards is unsolvable?”</p>
+
+<p>“Just… try harder.”</p>
+
+<p>Why 163? Steven just played it like that. It’s just a big prime number, that’s not too big.</p>
+
+<p>This is the first project I’ve worked on entirely individually and I’m extremely proud of it! I have big dreams and aspirations that I hope I can all include eventually. I’m didn’t start developing this game so that it could be popular, but because this game is one I’ve been consistently playing by myself since high school (with actual cards). After taking CS61A and CS61B in the spring 2016, for the first time in forever, I finally had faith in my programming ability even having taken Java and APCS courses in high school. Even having worked on Android Applications before in teams, I honestly never really understood how it all worked together, so this application was definitely the test for myself to prove whether or not I could take Java and Android and create a functional app. Sure did!</p>
+
+<p>Why did I write so much (~1600 words)? It’s winter break, and I wanted to be as transparent and as detailed about this project for myself. I understand that only my parents and maybe a few others will read even a majority of this text, but I still do it kind of for safe keeping, and kind of for the personal sense of project fulfillment.</p>
+
+<p>Thank you!!</p>
+
