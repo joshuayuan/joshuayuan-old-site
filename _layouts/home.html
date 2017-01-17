@@ -17,8 +17,10 @@ redirect_from:
     {% assign sorted_projects = (site.projects | sort:"order")%}
     {% for project in sorted_projects %}
     <a href="{{project.url}}" class="grid-item {% if first %}grid-sizer{% endif %}">
-        <img src="{{project.thumbnail}}" width="100px"/>
-        <!-- <h3>{{project.title}}</h3> -->
+        <img src="{{project.thumbnail}}"/>
+        <div class="label">
+            <h3>{{project.title}}</h3>
+        </div>
         <!-- <p>{{project.brief}}</p> -->
       </a>
       {% assign first = false %}

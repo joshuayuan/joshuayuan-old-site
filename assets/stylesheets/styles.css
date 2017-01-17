@@ -47,6 +47,15 @@ body {
 #toc {
     font-size: 3rem;
 }
+#sbicons {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+#sbicons li {
+    display: inline;
+    margin: 1%;
+}
 
 /*
 *
@@ -71,6 +80,7 @@ body {
     margin: 0;
 }
 #projects{
+    padding-top: 2vh;
     background-color: white;
 }
 #contact {
@@ -109,10 +119,27 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+.grid-item:hover img {
+    /*transform: translate(50%);*/
+    z-index: -1;
+}
+
 @media (min-width: 550px) {
     .grid-item {
         width: 48%;
         height: 30em;
+    }
+    .grid-item .label {
+        background-color: #03A9F4;
+        color: white;
+        opacity: 0;
+        border: #0288D1 solid .75vh;
+        top: 50%;
+    }
+    .grid-item:hover .label{
+        opacity: 1;
+        z-index: 1000;
     }
 
 }
@@ -120,5 +147,6 @@ body {
     .grid-item {
         width: 31.3%;
     }
+
 
 }
