@@ -76,6 +76,8 @@ body {
     padding-right: 0.5%;
     float: right;
     margin: 0 auto;
+}
+.centered {
     text-align: center;
 }
 #intro {
