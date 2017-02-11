@@ -1,0 +1,59 @@
+---
+layout: project
+title: Carousel
+thumbnail: /assets/images/thumbnail_carousel.jpg
+order: 4
+---
+
+<h1 align="center" >Carousel</h1>
+
+<p>January 2017 [Completed]</p>
+
+<h2>Links</h2>
+
+<p>Devpost: <a href="https://devpost.com/software/carousel-zhj3x8">https://devpost.com/software/carousel-zhj3x8</a></p>
+
+<p>Code: <a href="https://github.com/joshuayuan/carousel-software">https://github.com/joshuayuan/carousel-software</a>, <a href="https://github.com/joshuayuan/node_partnumber_info">https://github.com/joshuayuan/node_partnumber_info</a>, <a href="https://github.com/brentyi/digikey_parser">https://github.com/brentyi/digikey_parser</a> </p>
+
+<h2>Overview</h2>
+
+<p>Carousel is an electronic component bag organizer. </p>
+
+<p>Let me explain. As electronic hobbyists, we order surface mounts (tiny electronic components) to solder onto PCBs. These components are shipped in small bags of a variety of rectangular sizes from manufacturers such as Arrow, Digikey, or Mouser. A problem arises when you have hundreds of parts, which results in hundreds of boxes, and when youre looking for a specific bag you spend ten minutes sifting through each bag looking for the one you want. So, at PennApps XV, my team of Raphael Chang, Tiffany Cheung, Brent Yi, and I designed an efficient storage system for these bags such that you could also retrieve any bag within seconds. I worked on the software for this system.</p>
+
+<h2>To store a bag, scan the barcode on the bag with your mobile device through the web application. Clip a binder clip to the top center of the bag. The carousel will spin such that an empty slot is at the front of the device, with a LED indicating the exact position. Place the binder clip and bag in the slot. To retrieve a bag, input the part description or part number into the application, then the carousel will rotate so that the slot at the front of the device will contain the bag. An LED will indicate which slot position the bag is in. Pick up the binder clip for access to the bag.</h2>
+
+<h2>Development</h2>
+
+<h3>Brainstorming</h3>
+
+<p>Both the hardware and software systems would be equally important for this project to work. </p>
+
+<p>We first thought of a method to physically store many bags and settled on a method of clipping binder clips to the bags, then storing the binder clips. We considered additional methods such as rolling the bags into tubes and storing those, but binder clips were more accessible and streamlined among other properties. The idea of a carousel system was inspired from dry-cleaning systems or vertical revolving car garages. One of the earlier designs had two discs one on top of the other, the bottom with slots to align the bags and the top with slots to hold up the binder clips.</p>
+
+<p>For the user experience, there would be two aspects - storage and retrieval. For storage, we wanted the user to be able to use a mobile device running the application to scan a bags barcode and just drop the bag and clip into a slot. To retrieve the bag, the user should input the part number or a part description into the application and be able to just pick up the binder clip containing the bag from the slot. To do all this, wed need a database to store each bag information with a position, some type of barcode scanner, and software to retrieve part information from the internet given a specific barcode number.</p>
+
+<h3>Scanning and Information Retrieval</h3>
+
+<p>To scan the barcodes, we used a bar code scanning library called <i>ZBar</i>. This library would return a string of digits and characters for each barcode it processed, so for bags from Mouser or Arrow with multiple barcodes extra filtering was needed to identify which barcode was related to that part number (there were multiple barcodes for information such as quantity, or manufacturer, etc). The Digikey bags only had a single barcode, so no extra filtering was needed for that. </p>
+
+<p>Once we knew the barcode, we needed to figure out how to find the parts number, description, and manufacturer just from that barcode. Brent published a Node package (<a href="https://www.npmjs.com/package/digikey_parser">https://www.npmjs.com/package/digikey_parser</a>) that could take a Digikey barcode number and output a JavaScript object containing that parts corresponding part number, manufacturer, and part number. I wrote a piece of code to do the same but with Mouser and Arrow barcodes. I figured out that Mouser barcodes directly corresponded to a part number, so I initially wrote code to visit Mousers websites, search for the part, retrieve the relevant information through HTML parsing. However, the plan changed because Mousers website would block requests that were not from a browser, and Arrows search query would not always return the specific part. This feature was put on hold temporarily until Raphael discovered a way to use another website to retrieve the relevant information. By playing around with the URL of this site (octopart.com), we were able to retrieve another large JSON with the relevant data embedded inside. Now we could retrieve the part number, manufacturer, and description given a Digikey, Mouser, or Arrow barcode.</p>
+
+<h3>NodeJS &amp; MongoDB</h3>
+
+<p>We use NodeJS as the webserver to run MongoDB on, serve HTTP requests, and run the web application. A Mongo Database mantains the information needed to store and retrieve bags from our system. When inserting a part, we first check whether or not this part is already in our database. If it is, we just rotate the carousel disc to the position the part is at. If its not in the database, then we assign it to an empty position randomly. We store the corresponding JavaScript object and the position in the database. To retrieve a part, just search for the object in the database, and return the position.</p>
+
+<h3>Web Application</h3>
+
+<p>The UI should be as simple as possible, with the least number of steps to complete a transaction. There are two buttons at the start to indicate a part retrieval or insertion. At each subsequent step, only the most basic information is displayed or requested. We use Socket.io, a NodeJS module that provides real-time bidirectional communication, to pass information back and forth between the interface and our database. This web application can run on both mobile devices and PCs, as long as youre able to upload an image through a file manager or a camera. </p>
+
+<h3>Electronics</h3>
+
+<p>The turntable is currently powered by a DYNAMIXEL Robot Servo which is driven by ROS running on the Node server. The server just publishes commands to the ROS driver every time the disc rotates. An Arduino reads digits through its serial port and sets the corresponding LEDs on or off. The Arduino is powered by the computer, and the Servo motor is powered with a 12 Volt power supply.</p>
+
+<h2>Final Thoughts</h2>
+
+<p>Overall this project was a large success. While there were features that couldve been improved, the fact that this device was fully functional is amazing. The 36 hours spent on Carousel was exhausting, and even though we didnt win any awards, I still felt well rewarded to have helped create a working product. With future iterations of this device to improve its functions, Carousel will definitely be rebuilt and actually used. I look forward to continue using various hardware and software technologies to build cohesive systems.</p>
+
+
+
