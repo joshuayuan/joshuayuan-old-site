@@ -20,7 +20,7 @@ body {
 #sidebar {
     position: fixed;
     top: 0%;
-    width: 20vw;
+    width: 20%;
     height: 100vh;
     left: 0%;
     text-align: center;
@@ -73,7 +73,7 @@ body {
 .main {
     position: relative;
     display: block;
-    width: 80vw;
+    width: 80%;
     padding-left: 2vw;
     padding-right: 2vw;
     float: right;
