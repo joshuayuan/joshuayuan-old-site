@@ -28,7 +28,9 @@ body {
     z-index: 2;
     /*border-right: #0288D1 solid .75vh;*/
     padding-top: 10%;
-
+}
+#sidebar h1 {
+    font-size: 3vw;
 }
 #sidebar a {
     color: #FFFFFF;
@@ -51,7 +53,7 @@ body {
     width: 1%;
 }
 #toc {
-    font-size: 3rem;
+    font-size: 2vw;
 }
 #sbicons {
     list-style-type: none;
