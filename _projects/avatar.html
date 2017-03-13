@@ -3,4 +3,31 @@ layout: project
 title: ATLA Scripts
 order: 6
 ---
+<h1 class="centered" >ATLA Transcripts</h1>
+
+<p class="centered" >January 2017 [Completed]</p>
+
+<h2>Links</h2>
+
+<p>Code: <a href="https://github.com/joshuayuan/ATLA-script">https://github.com/joshuayuan/ATLA-script</a></p>
+
+<h2>Overview</h2>
+
+<p>Click <a href="{{ site.url }}/assets/atla.html">here</a> for all the transcripts to Avatar the Last Airbender: Book 1, 2, and 3!</p>
+
+<h2>Inspiration</h2>
+
+<p>Since the 4th grade I've been super into Avatar the Last Airbender. I would rewatch episodes, act out scenes, study the <a href="http://avatar.wikia.com/wiki/Avatar_Wiki" >Avatar Wikia</a>. At one point, I discovered <a href="https://github.com/joshuayuan/ATLA-script/blob/master/atla.avatarspirit.net/transcripts.php" >this website</a> which had the scripts for all the episodes, and more. This was my new goto website because now I could memorize the quotes precisely.</p>
+
+<p>A few years ago, I became paranoid that one day the site might go down and I would lose access to the scripts, so I thought of manually copy and pasting the contents into a document, or of manually saving the html, but these were inefficient and excessive actions, so I decided realized the best way to go about this would be to write a script which could visit each page and save the html automatically.</p>
+
+<p>January 2017 I decided to stop procrastinating and just write this program.</p>
+
+<h2>How it works</h2>
+
+<p>The function <em>generateURLs</em> creates a list of strings formatted like "<a href="http://atla.avatarspirit.net/transcripts.php?num=" >http://atla.avatarspirit.net/transcripts.php?num=</a>" and appended with a book and episode number. For example, "<a href="http://atla.avatarspirit.net/transcripts.php?num=305" >http://atla.avatarspirit.net/transcripts.php?num=305</a>" corresponds to the script for Book 3, Episode 5.</p>
+
+<p>Then, the function <em>openPages</em> iterates through that list generated from the previous function, and calls the <em>writeHtmlToFile</em> function, passing the html for each page and a title string as arguments. <em>writeHtmlToFile</em> scans the whole html string for "&lt;blockquote&gt;" and "&lt;/blockquote&gt;" substrings and saves the content between those two tags into a new file in the <em>scripts</em> folders.</p>
+
+<p>Open the file in browser - Tada!</p>
 
