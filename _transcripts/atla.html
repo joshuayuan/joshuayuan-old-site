@@ -3,13 +3,14 @@ layout: project
 title: ATLA Transcripts Index
 ---
 <h1 class="centered">Transcripts</h1>
+<a href="{{ site.url }}/projects/avatar.html">GO BACK </a>
 <ul>
     {% assign sorted_transcripts = {site.transcripts | sort:"order"} %}
     {% for ts in sorted_transcripts %}
     {% if ts.title=="s1e01" %} <h3> Book 1: Water </h3> 
     {% elsif ts.title=="s2e01" %} <h3> Book 2: Earth </h3>
     {% elsif ts.title=="s3e01" %} <h3> Book 3: Fire </h3>
-    {% elsif ts.title=="ATLA Transcripts Index" %}
+    {% elsif ts.title=="ATLA Transcripts Index" %} {% continue %}
     {% endif %}
     <li><a href="{{site.url}}{{ts.url}}"> {{ts.title}}</a></li>
     {% endfor %}
