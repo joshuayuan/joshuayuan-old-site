@@ -154,6 +154,7 @@ body {
 .grid-item a.info {
     display: flex;
     text-decoration: none;
+    font-size: 2rem;
     padding: 7px 14px;
     text-transform: uppercase;
     color: #fff;
@@ -165,8 +166,8 @@ body {
     -webkit-transform: scale(1.5);
     -ms-transform: scale(1.5);
     transform: scale(1.5);
-    -webkit-transition: all 0.4s ease-in-out;
-    transition: all 0.4s ease-in-out;
+    -webkit-transition: all 0.25s ease-in-out;
+    transition: all 0.25s ease-in-out;
     font-weight: normal;
     height: 85%;
     width: 85%;
