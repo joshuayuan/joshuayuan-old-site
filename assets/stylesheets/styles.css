@@ -152,7 +152,7 @@ body {
     height: 100%;
 }
 .grid-item a.info {
-    display: inline-block;
+    display: flex;
     text-decoration: none;
     padding: 7px 14px;
     text-transform: uppercase;
@@ -173,8 +173,10 @@ body {
     position: absolute;
     top: 7.5%;
     left: 7.5%;
-    padding-top: 50%;
-    vertical-align: middle
+    vertical-align: middle;
+    align-items: center;
+    justify-content: center;
+
 }
 .grid-item:hover a.info {
     opacity: 1;
