@@ -85,8 +85,11 @@ body {
     text-align: center;
 }
 #intro {
-    background-color: #81D4FA;
+    background-color: #4FC3F7;
     padding: 2vh 0 0 0;
+}
+#intro a {
+    color: #FFFFFF;
 }
 .nospace {
     margin: 0;
@@ -96,8 +99,11 @@ body {
     padding: 2vh 2vw 0 2vw
 }
 #contact {
-    background-color: #81D4FA;
+    background-color: #4FC3F7;
     padding: 2vh 0 0 0;
+}
+#contact a {
+    color: #FFFFFF;
 }
 .project {
     padding: 2vh;
