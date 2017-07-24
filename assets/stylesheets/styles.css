@@ -76,8 +76,8 @@ body {
     display: block;
     width: 80%;
     padding: 2vw;
-    padding-left: 18vw;
-    padding-right: 18vw;
+    padding-left: 22vw;
+    padding-right: 22vw;
     float: right;
     margin: 0 auto;
 }
@@ -85,8 +85,8 @@ body {
     text-align: center;
 }
 #intro {
-    padding-top: 2vh;
     background-color: #81D4FA;
+    padding: 2vh 0 0 0;
 }
 .nospace {
     margin: 0;
@@ -96,8 +96,8 @@ body {
     padding: 2vh 2vw 0 2vw
 }
 #contact {
-    padding-top: 2vh;
     background-color: #81D4FA;
+    padding: 2vh 0 0 0;
 }
 .project {
     padding: 2vh;
