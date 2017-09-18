@@ -25,6 +25,8 @@ collections:
         output: true
     transcripts:
         output: true
+    teaching:
+        output: true
 # Build settings
 markdown: kramdown
 # theme: minima
