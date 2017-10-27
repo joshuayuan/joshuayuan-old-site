@@ -30,7 +30,7 @@ body {
     padding-top: 10vh;
 }
 #sidebar h1 {
-    font-size: 3vw;
+    font-size: 2.5vw;
 }
 #sidebar a {
     color: #FFFFFF;
@@ -54,7 +54,7 @@ body {
     width: 1%;
 }
 #toc {
-    font-size: 2vw;
+    font-size: 1.5vw;
 }
 #sbicons {
     list-style-type: none;
